@@ -5,10 +5,30 @@
              x:Class="TicTacToe.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Label 
+            Text="Tic Tac Toe"
+            FontSize="50"
+            Margin="0,100,0,0"
+            HorizontalOptions="Center"
+            VerticalOptions="StartAndExpand"/>
+        <Button 
+            Text="Play"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="End"
+            Margin="0,20,0,0" 
+            Clicked="PlayButtonClick"/>
+        <Button 
+            Text="Rules"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="End"
+            Margin="0,20,0,0" 
+            Clicked="RulesButtonClick"/>
+        <Button 
+            Text="Exit"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="End"
+            Margin="0,20,0,100"
+            Clicked="ExitButtonClick"/>
     </StackLayout>
 
 </ContentPage>

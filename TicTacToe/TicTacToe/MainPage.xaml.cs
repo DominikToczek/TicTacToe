@@ -13,5 +13,18 @@ namespace TicTacToe
         {
             InitializeComponent();
         }
+  
+        private async void PlayButtonClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GamePage());
+        }
+        private void RulesButtonClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void ExitButtonClick(object sender, EventArgs e)
+        {
+            Navigation.RemovePage(this);
+        }
     }
 }
