@@ -26,15 +26,15 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="0" Grid.Row="1" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="0" Grid.Row="2" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="1" Grid.Row="0" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="1" Grid.Row="1" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="1" Grid.Row="2" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="2" Grid.Row="0" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="2" Grid.Row="1" Clicked="FieldSelectionClick"/>
-                <Button Grid.Column="2" Grid.Row="2" Clicked="FieldSelectionClick"/>
+                <Button x:Name="btn1" Grid.Column="0" Grid.Row="0" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn2" Grid.Column="0" Grid.Row="1" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn3" Grid.Column="0" Grid.Row="2" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn4" Grid.Column="1" Grid.Row="0" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn5" Grid.Column="1" Grid.Row="1" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn6" Grid.Column="1" Grid.Row="2" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn7" Grid.Column="2" Grid.Row="0" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn8" Grid.Column="2" Grid.Row="1" Clicked="FieldSelectionClick" Text=""/>
+                <Button x:Name="btn9" Grid.Column="2" Grid.Row="2" Clicked="FieldSelectionClick" Text=""/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

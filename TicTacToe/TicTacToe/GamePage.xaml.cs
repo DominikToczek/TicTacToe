@@ -12,13 +12,16 @@ namespace TicTacToe
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GamePage : ContentPage
 	{
-        private bool isCircleMove = false;
+        private string currentSymbol = Cross;
+        const string Circle = "O";
+        const string Cross = "X";
+        const string Empty = "";
 
 
 		public GamePage ()
 		{
 			InitializeComponent ();
-            LabelMove.Text = "Ruch: X";
+            LabelMove.Text = $"Ruch: {Cross}";
 		}
 
         protected override void OnSizeAllocated(double width, double height)
@@ -27,29 +30,34 @@ namespace TicTacToe
             gameGrid.HeightRequest = width;
         }
 
-        private void FieldSelectionClick(object sender, EventArgs e)
+        private async void FieldSelectionClick(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (isCircleMove)
+            
+            btn.Text = currentSymbol;
+            btn.IsEnabled = false;
+            
+            if (IsWinner(GetButtons()))
             {
-                btn.Text = "O";
-                LabelMove.Text = "Ruch: X";
+                await DisplayAlert("Wygrana", $"Wygrywa: {currentSymbol}", "OK");
+                ClearFields(GetButtons());
             }
             else
             {
-                btn.Text = "X";
-                LabelMove.Text = "Ruch: O";
+                if (!AreEmptyFields(GetButtons()))
+                {
+                    await DisplayAlert("Remis", "Gra zakończyła się remisem.", "OK");
+                    ClearFields(GetButtons());
+                }
             }
-            isCircleMove = !isCircleMove;
-            btn.IsEnabled = false;
+
+            currentSymbol = currentSymbol == Circle ? Cross : Circle;
+            LabelMove.Text = $"Ruch: {currentSymbol}";
         }
 
         private List<Button> GetButtons()
         {
-            var grid = this.Content as Grid;
-            var btnList = grid.Children.Where(b => b is Button).Cast<Button>().ToList();
-            btnList.RemoveAt(9);
-            return btnList;
+            return new List<Button> { btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 };
         }
 
         private bool IsWinner(List<Button> btnList)
@@ -61,9 +69,23 @@ namespace TicTacToe
             return rowCheck || columnCheck || diagonalCheck;
         }
 
+        private bool AreEmptyFields(List<Button> btnList)
+        {
+            return btnList.Any(f => f.Text == Empty);
+        }
+
         private bool CheckButtons(List<Button> btnList, int a, int b, int c)
         {
-            return (btnList[a].Text != "") && (btnList[a].Text == btnList[b].Text) && (btnList[b].Text == btnList[c].Text);
+            return (btnList[a].Text != Empty) && (btnList[a].Text == btnList[b].Text) && (btnList[b].Text == btnList[c].Text);
+        }
+
+        private void ClearFields(List<Button> btnList)
+        {
+            foreach (Button btn in btnList)
+            {
+                btn.Text = Empty;
+                btn.IsEnabled = true;
+            }
         }
     }
 }
