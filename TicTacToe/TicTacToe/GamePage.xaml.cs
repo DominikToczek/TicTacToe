@@ -78,7 +78,7 @@ namespace TicTacToe
 
         private bool IsWinner(List<Button> btnList)
         {
-            bool rowCheck = CheckButtons(btnList, 0, 1, 2) || CheckButtons(btnList, 3, 4, 5) || CheckButtons(btnList, 7, 8, 9);
+            bool rowCheck = CheckButtons(btnList, 0, 1, 2) || CheckButtons(btnList, 3, 4, 5) || CheckButtons(btnList, 6, 7, 8);
             bool columnCheck = CheckButtons(btnList, 0, 3, 6) || CheckButtons(btnList, 1, 4, 7) || CheckButtons(btnList, 2, 5, 8);
             bool diagonalCheck = CheckButtons(btnList, 0, 4, 8) || CheckButtons(btnList, 2, 4, 6);
 
