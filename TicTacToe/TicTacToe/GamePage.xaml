@@ -4,8 +4,9 @@
              x:Class="TicTacToe.GamePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label 
-                Text="Krzyżyk: X         Remis: X         Kółko: X"
+            <Label
+                x:Name="LabelScore"
+                Text=""
                 Margin="0,20,0,0"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" />

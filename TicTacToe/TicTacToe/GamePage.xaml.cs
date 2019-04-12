@@ -13,16 +13,20 @@ namespace TicTacToe
 	public partial class GamePage : ContentPage
 	{
         private string currentSymbol = Cross;
-        const string Circle = "O";
-        const string Cross = "X";
-        const string Empty = "";
+        private const string Circle = "O";
+        private const string Cross = "X";
+        private const string Empty = "";
 
+        public int CrossScore { get; set; } = 0;
+        public int DrawScore { get; set; } = 0;
+        public int CircleScore { get; set; } = 0;
 
-		public GamePage ()
+        public GamePage ()
 		{
 			InitializeComponent ();
             LabelMove.Text = $"Ruch: {Cross}";
-		}
+            LabelScore.Text = $"Cross: {CrossScore}           Draw: {DrawScore}           Circle: {CircleScore}";
+        }
 
         protected override void OnSizeAllocated(double width, double height)
         {
@@ -36,10 +40,19 @@ namespace TicTacToe
             
             btn.Text = currentSymbol;
             btn.IsEnabled = false;
+            bool test1 = AreEmptyFields(GetButtons());
             
             if (IsWinner(GetButtons()))
             {
                 await DisplayAlert("Wygrana", $"Wygrywa: {currentSymbol}", "OK");
+                if (currentSymbol == Cross)
+                {
+                    CrossScore++;
+                }
+                else
+                {
+                    CircleScore++;
+                }
                 ClearFields(GetButtons());
             }
             else
@@ -47,12 +60,15 @@ namespace TicTacToe
                 if (!AreEmptyFields(GetButtons()))
                 {
                     await DisplayAlert("Remis", "Gra zakończyła się remisem.", "OK");
+                    DrawScore++;
                     ClearFields(GetButtons());
                 }
+                else
+                {
+                    currentSymbol = currentSymbol == Circle ? Cross : Circle;
+                    LabelMove.Text = $"Ruch: {currentSymbol}";
+                }
             }
-
-            currentSymbol = currentSymbol == Circle ? Cross : Circle;
-            LabelMove.Text = $"Ruch: {currentSymbol}";
         }
 
         private List<Button> GetButtons()
@@ -85,6 +101,7 @@ namespace TicTacToe
             {
                 btn.Text = Empty;
                 btn.IsEnabled = true;
+                LabelScore.Text = $"Cross: {CrossScore}           Draw: {DrawScore}           Circle: {CircleScore}";
             }
         }
     }
